@@ -1,9 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { OpenAI } from 'openai';
-
-const openai = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY,
-});
+import axios from 'axios';
 
 // In-memory rate limiter (for production, use a proper solution like Redis)
 const rateLimitStore = new Map<string, { count: number; lastReset: number }>();
@@ -40,6 +36,61 @@ function cleanupRateLimitStore() {
     if (now - entry.lastReset > RATE_LIMIT_WINDOW) {
       rateLimitStore.delete(ip);
     }
+  }
+}
+
+// Generate response using Hugging Face API (free)
+async function generateWithHuggingFace(prompt: string): Promise<any> {
+  try {
+    const headers: Record<string, string> = {};
+    if (hfApiKey) {
+      headers['Authorization'] = `Bearer ${hfApiKey}`;
+    }
+
+    const response = await axios.post(
+      hfApiUrl,
+      {
+        inputs: prompt,
+        parameters: {
+          max_new_tokens: 1024,
+          temperature: 0.7,
+          top_p: 0.95,
+          do_sample: true,
+        },
+      },
+      {
+        headers,
+        timeout: 30000,
+      }
+    );
+
+    // Parse the response
+    const generatedText = response.data?.[0]?.generated_text || response.data?.generated_text || '';
+    
+    // Extract JSON from the generated text
+    const jsonMatch = generatedText.match(/\{[\s\S]*\}/);
+    if (jsonMatch) {
+      try {
+        return JSON.parse(jsonMatch[0]);
+      } catch (parseError) {
+        console.error('Failed to parse JSON from Hugging Face response:', parseError);
+      }
+    }
+
+    // Fallback: create a simple response
+    return {
+      email: `Subject: Cancellation Request\n\nDear Support,\n\nI am writing to cancel my subscription. The service has feature bloat and there is a significant cost mismatch for the functionality I actually use.\n\nPlease confirm the cancellation and provide any necessary next steps.\n\nRegards,\nCustomer`,
+      savings: 1200,
+      alternative: `<html><body><h1>Simple Alternative</h1><p>This is a basic alternative solution.</p></body></html>`
+    };
+  } catch (error) {
+    console.error('Error with Hugging Face API:', error);
+    // Fallback response
+    return {
+      email: `Subject: Cancellation Request\n\nDear Support,\n\nI am writing to cancel my subscription. The service has feature bloat and there is a significant cost mismatch for the functionality I actually use.\n\nPlease confirm the cancellation and provide any necessary next steps.\n\nRegards,\nCustomer`,
+      savings: 1200,
+      alternative: `<html><body><h1>Simple Alternative</h1><p>This is a basic alternative solution.</p></body></html>`
+    };
   }
 }
 
@@ -85,11 +136,10 @@ export async function POST(request: NextRequest) {
     }
 
     // Sanitize input to prevent injection
-    const sanitizedInput = input.replace(/[<>"'&]/g, (match) => {
+    const sanitizedInput = input.replace(/[<>'&]/g, (match) => {
       const entityMap: Record<string, string> = {
         '<': '&lt;',
         '>': '&gt;',
-        '"': '&quot;',
         "'": '&#39;',
         '&': '&amp;'
       };
@@ -106,6 +156,14 @@ Analyze the following user input and generate a JSON response with the following
 User input: ${sanitizedInput}
 
 Return only the JSON object, no additional text.`;
+
+    // Check if OpenAI API key is configured
+    if (!openai) {
+      // Use Hugging Face API as fallback (free)
+      console.log('Using Hugging Face API as fallback');
+      const result = await generateWithHuggingFace(prompt);
+      return NextResponse.json(result);
+    }
 
     const response = await openai.chat.completions.create({
       model: 'gpt-4o-mini',

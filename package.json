@@ -11,6 +11,7 @@
   "dependencies": {
     "ai": "^6.0.140",
     "axios": "^1.13.6",
+    "huggingface-hub": "^0.23.4",
     "lucide-react": "^0.378.0",
     "next": "14.2.3",
     "openai": "^6.33.0",
