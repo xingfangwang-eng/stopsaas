@@ -523,15 +523,6 @@ export default function ClientComponent({ keyword }: Props) {
                 Expert Analysis
               </h2>
               <div className="bg-gradient-to-br from-purple-50 to-blue-50 border border-purple-200 rounded-lg p-6 sm:p-8">
-                <div className="flex items-start mb-4">
-                  <div className="w-16 h-16 bg-purple-600 rounded-full flex items-center justify-center flex-shrink-0">
-                    <Cpu className="w-8 h-8 text-white" />
-                  </div>
-                  <div className="ml-4">
-                    <h3 className="font-bold text-slate-900 text-lg">Dr. Michael Chen</h3>
-                    <p className="text-slate-600 text-sm">Senior Software Engineer, MIT</p>
-                  </div>
-                </div>
                 <div className="prose prose-slate max-w-none">
                   <p className="text-slate-700 leading-relaxed mb-4">
                     {(() => {
