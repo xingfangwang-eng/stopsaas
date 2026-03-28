@@ -12,6 +12,7 @@
     "ai": "^6.0.140",
     "axios": "^1.13.6",
     "framer-motion": "^12.38.0",
+    "google-auth-library": "^10.6.2",
     "lucide-react": "^0.378.0",
     "next": "14.2.3",
     "openai": "^6.33.0",
