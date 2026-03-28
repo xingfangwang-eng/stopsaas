@@ -273,8 +273,7 @@ function YouMayAlsoLike() {
   if (!mounted) {
     return (
       <div className="mt-12 border-t border-slate-200 pt-6 sm:pt-8">
-        <h2 className="text-xl sm:text-2xl font-bold text-slate-900 mb-6 flex items-center">
-          <span className="w-4 h-12 bg-blue-600 mr-4"></span>
+        <h2 className="text-xl sm:text-2xl font-bold text-slate-900 mb-6">
           You May Also Like
         </h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -290,8 +289,7 @@ function YouMayAlsoLike() {
   
   return (
     <div className="mt-12 border-t border-slate-200 pt-6 sm:pt-8">
-      <h2 className="text-xl sm:text-2xl font-bold text-slate-900 mb-6 flex items-center">
-        <span className="w-4 h-12 bg-blue-600 mr-4"></span>
+      <h2 className="text-xl sm:text-2xl font-bold text-slate-900 mb-6">
         You May Also Like
       </h2>
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -518,9 +516,6 @@ export default function ClientComponent({ keyword }: Props) {
 
             {/* 专家评论模块 */}
             <div className="mt-12">
-              <h2 className="text-2xl font-bold text-slate-900 mb-6">
-                Expert Analysis
-              </h2>
               <div className="bg-gradient-to-br from-purple-50 to-blue-50 border border-purple-200 rounded-lg p-6 sm:p-8">
                 <div className="prose prose-slate max-w-none">
                   <p className="text-slate-700 leading-relaxed mb-4">
@@ -764,8 +759,7 @@ export default function ClientComponent({ keyword }: Props) {
 
             {/* 相关解决方案 */}
             <div className="mt-12">
-              <h2 className="text-2xl font-bold text-slate-900 mb-6 flex items-center">
-                <span className="w-4 h-12 bg-red-600 mr-4"></span>
+              <h2 className="text-2xl font-bold text-slate-900 mb-6">
                 Related Solutions
               </h2>
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
