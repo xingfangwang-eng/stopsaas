@@ -1,5 +1,16 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { OpenAI } from 'openai';
 import axios from 'axios';
+
+// Check if OpenAI API key is configured
+const openaiApiKey = process.env.OPENAI_API_KEY;
+const openai = openaiApiKey ? new OpenAI({
+  apiKey: openaiApiKey,
+}) : null;
+
+// Hugging Face configuration (free)
+const hfApiUrl = 'https://api-inference.huggingface.co/models/google/flan-t5-large';
+const hfApiKey = process.env.HUGGINGFACE_API_KEY; // Optional, but recommended for higher rate limits
 
 // In-memory rate limiter (for production, use a proper solution like Redis)
 const rateLimitStore = new Map<string, { count: number; lastReset: number }>();

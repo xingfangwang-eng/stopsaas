@@ -1,7 +1,8 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import { ArrowRight, Send, Copy, Check, Loader2 } from "lucide-react";
+import Link from "next/link";
+import { ArrowRight, Send, Copy, Check, Loader2, LayoutGrid } from "lucide-react";
 
 // Type definitions
 interface StripResult {
@@ -214,7 +215,7 @@ export default function Home() {
                   Save thousands on bloated SaaS subscriptions. Kill the bloat, keep the functionality.
                 </p>
               </div>
-              
+
               <form id="strip-form" onSubmit={handleSubmit} className="w-full max-w-2xl mb-6 sm:mb-8">
                 <div className="relative group">
                   <input
@@ -264,6 +265,16 @@ export default function Home() {
                 </div>
                 <ArrowRight className="w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7 group-hover:translate-x-1 transition-transform duration-200 relative z-10" />
               </button>
+
+              {/* Browse All Alternatives Button */}
+              <Link 
+                href="/solutions"
+                className="group flex items-center gap-3 px-8 sm:px-10 py-4 sm:py-5 bg-blue-600 text-white text-lg sm:text-xl font-bold rounded-lg hover:bg-blue-700 active:scale-[0.98] transition-all duration-200 shadow-lg hover:shadow-xl mt-8 sm:mt-12"
+              >
+                <LayoutGrid className="w-5 h-5 sm:w-6 sm:h-6" />
+                Browse All Alternatives
+                <ArrowRight className="w-5 h-5 sm:w-6 sm:h-6 group-hover:translate-x-1 transition-transform duration-200" />
+              </Link>
             </div>
             
             {showResults && result && (
@@ -340,9 +351,25 @@ export default function Home() {
           </div>
         </div>
         
-        {/* Support Contact */}
+        {/* Support Contact & Donation */}
         <div className="relative z-10 max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 py-12">
-          <div className="text-center">
+          <div className="text-center space-y-6">
+            {/* PayPal Donation Button */}
+            <div className="flex justify-center">
+              <a
+                href="https://www.paypal.com/paypalme/xingfangwang"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group inline-flex items-center gap-3 px-6 py-3 bg-[#0070BA] text-white font-bold rounded-lg hover:bg-[#003087] transition-all duration-200 shadow-lg hover:shadow-xl"
+              >
+                <svg className="w-6 h-6" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M7.076 21.337H2.47a.641.641 0 0 1-.633-.74L4.944.901C5.026.382 5.474 0 5.998 0h7.46c2.57 0 4.578.543 5.69 1.81 1.01 1.15 1.304 2.42 1.012 4.287-.023.143-.047.288-.077.437-.983 5.05-4.349 6.797-8.647 6.797h-2.19c-.524 0-.968.382-1.05.9l-1.12 7.106zm14.146-14.42a3.35 3.35 0 0 0-.607-.541c-.013.076-.026.175-.041.254-.59 3.025-2.566 6.082-8.558 6.082H9.63l-1.496 9.478h2.79c.457 0 .85-.334.922-.788l.04-.19.73-4.627.047-.255a.933.933 0 0 1 .922-.788h.58c3.76 0 6.704-1.528 7.565-5.621.253-1.294.196-2.373-.217-3.146-.134-.246-.286-.468-.452-.658z"/>
+                </svg>
+                Buy me a coffee
+                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+              </a>
+            </div>
+            
             <p className="text-slate-600 font-medium">Support: 457239850@qq.com</p>
           </div>
         </div>
