@@ -520,8 +520,7 @@ export default function ClientComponent({ keyword }: Props) {
 
             {/* 技术对比模块 */}
             <div className="mt-12">
-              <h2 className="text-2xl font-bold text-slate-900 mb-6 flex items-center">
-                <span className="w-4 h-12 bg-blue-600 mr-4"></span>
+              <h2 className="text-2xl font-bold text-slate-900 mb-6">
                 {(() => {
                   const comparison = generateTechnicalComparison(keyword);
                   return comparison.title;
@@ -554,10 +553,9 @@ export default function ClientComponent({ keyword }: Props) {
               </div>
             </div>
 
-            {/* 产品功能列表 */}
+            {/* 产品功能 */}
             <div className="mt-12">
-              <h2 className="text-2xl font-bold text-slate-900 mb-6 flex items-center">
-                <span className="w-4 h-12 bg-red-600 mr-4"></span>
+              <h2 className="text-2xl font-bold text-slate-900 mb-6">
                 Key Features
               </h2>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
@@ -620,8 +618,7 @@ export default function ClientComponent({ keyword }: Props) {
 
             {/* 用户 Testimonials */}
             <div className="mt-12">
-              <h2 className="text-2xl font-bold text-slate-900 mb-6 flex items-center">
-                <span className="w-4 h-12 bg-red-600 mr-4"></span>
+              <h2 className="text-2xl font-bold text-slate-900 mb-6">
                 What Our Users Say
               </h2>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
@@ -764,8 +761,7 @@ export default function ClientComponent({ keyword }: Props) {
 
             {/* 步骤指南 */}
             <div className="mt-12">
-              <h2 className="text-2xl font-bold text-slate-900 mb-6 flex items-center">
-                <span className="w-4 h-12 bg-red-600 mr-4"></span>
+              <h2 className="text-2xl font-bold text-slate-900 mb-6">
                 How It Works
               </h2>
               <div className="space-y-6">
@@ -810,8 +806,7 @@ export default function ClientComponent({ keyword }: Props) {
 
             {/* 联系信息 */}
             <div className="mt-12 border-t border-slate-200 pt-6 sm:pt-8">
-              <h2 className="text-xl sm:text-2xl font-bold text-slate-900 mb-4 flex items-center">
-                <span className="w-4 h-12 bg-red-600 mr-4"></span>
+              <h2 className="text-xl sm:text-2xl font-bold text-slate-900 mb-4">
                 Contact Support
               </h2>
               <p className="text-base sm:text-lg text-slate-600">
