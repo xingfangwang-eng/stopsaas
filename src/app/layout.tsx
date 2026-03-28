@@ -48,6 +48,9 @@ export const metadata: Metadata = {
     description: "Paste your SaaS regret, get a free DIY alternative and a cancellation template in 2 seconds.",
     images: ["https://stopsaas.com/og-image.png"],
   },
+  verification: {
+    google: "uTT2vLHXrvh44esSpln_EMc1QEFjkN0vjJZ04UgI0Qc",
+  },
 };
 
 export default function RootLayout({
