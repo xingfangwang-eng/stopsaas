@@ -4,7 +4,7 @@ export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
   
   // 检查是否为静态资源
-  if (pathname.startsWith('/_next/') || pathname.startsWith('/static/') || pathname.startsWith('/api/')) {
+  if (pathname.startsWith('/_next/') || pathname.startsWith('/static/') || pathname.startsWith('/api/') || pathname === '/sitemap.xml') {
     return NextResponse.next();
   }
   
