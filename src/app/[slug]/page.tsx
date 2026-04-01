@@ -34,7 +34,6 @@ export async function generateMetadata({ params }: Props) {
       description: 'Free tools to replace expensive Adobe subscriptions',
       keywords: 'free adobe alternatives, stopsaas, adobe alternatives, free design tools',
       robots: 'index, follow',
-      viewport: 'width=device-width, initial-scale=1',
     };
   }
 
@@ -44,7 +43,6 @@ export async function generateMetadata({ params }: Props) {
     keywords: `${keyword.keyword}, adobe alternative, free tool, stopsaas`,
     canonical: `https://stopsaas.com/${keyword.slug}`,
     robots: 'index, follow',
-    viewport: 'width=device-width, initial-scale=1',
     openGraph: {
       title: keyword.title,
       description: `${keyword.problem_description} ${keyword.how_to_solve}`,
@@ -57,6 +55,14 @@ export async function generateMetadata({ params }: Props) {
       title: keyword.title,
       description: `${keyword.problem_description} ${keyword.how_to_solve}`,
     },
+  };
+}
+
+// 生成视口设置
+export function generateViewport() {
+  return {
+    width: 'device-width',
+    initialScale: 1,
   };
 }
 
@@ -89,7 +95,25 @@ export default function SEOPage({ params }: Props) {
   }
 
   return (
-    <Suspense fallback={<div className="min-h-screen bg-slate-50">Loading...</div>}>
+    <Suspense fallback={
+      <div className="min-h-screen bg-slate-50">
+        {/* 导航栏 */}
+        <header className="bg-white border-b border-slate-200 sticky top-0 z-50">
+          <div className="max-w-7xl mx-auto px-6 py-4">
+            <a href="/" className="text-2xl font-black text-slate-900">
+              stopsaas
+            </a>
+          </div>
+        </header>
+        <div className="max-w-7xl mx-auto px-6 py-12">
+          <div className="bg-white border border-slate-200 p-6 sm:p-8">
+            <div className="h-12 bg-slate-200 rounded w-3/4 animate-pulse"></div>
+            <div className="mt-4 h-8 bg-slate-200 rounded w-1/2 animate-pulse"></div>
+            <div className="mt-6 h-64 bg-slate-200 rounded animate-pulse"></div>
+          </div>
+        </div>
+      </div>
+    }>
       <ClientComponent keyword={keyword} />
     </Suspense>
   );
