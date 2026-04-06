@@ -3,7 +3,7 @@ import keywords from '@/data/keywords.json';
 
 export default function sitemap(): MetadataRoute.Sitemap {
   // 基础 URL
-  const baseUrl = 'https://stopsaas.com';
+  const baseUrl = 'https://stopsaas.wangdadi.xyz';
 
   // 生成100个详情页的站点地图条目
   const keywordEntries = keywords.map((keyword) => ({
